@@ -7,7 +7,7 @@ import SideNav from "./components/sideNavigation/SideNav";
 function App() {
   return (
     <>
-      <SideNav />
+      {/* <SideNav /> */}
       {/* <Overlay /> */}
       <Header />
       <ClockWrapper />
