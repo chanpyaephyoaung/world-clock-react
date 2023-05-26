@@ -13,6 +13,10 @@
   & > * {
     // position: absolute;
   }
+
+  @include respond(phone) {
+    --clock-dimension: 13rem;
+  }
 }
 
 .clock {
@@ -59,16 +63,28 @@
       width: 2px;
       height: 33%;
       opacity: 0.9;
+
+      @include respond(phone) {
+        width: 1.5px;
+      }
     }
 
     &--minute {
       width: 4px;
       height: 26%;
+
+      @include respond(phone) {
+        width: 3.5px;
+      }
     }
 
     &--hour {
       width: 5.5px;
       height: 20%;
+
+      @include respond(phone) {
+        width: 4px;
+      }
     }
   }
 }
@@ -97,10 +113,18 @@
 
       &--number {
         width: 22%;
+
+        @include respond(phone) {
+          width: 24%;
+        }
       }
 
       &--separator {
         width: 5%;
+
+        @include respond(phone) {
+          width: 7%;
+        }
       }
     }
   }

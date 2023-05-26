@@ -14,6 +14,11 @@
     -webkit-tap-highlight-color: transparent;
   }
 
+  @include respond(phone) {
+    right: 50%;
+    transform: translateX(50%);
+  }
+
   &__icon-wrapper {
     --header-icon-dimension: 3.75rem;
     position: relative;
@@ -26,13 +31,26 @@
     cursor: pointer;
     transition: all 0.5s;
 
+    @include respond(tab-port) {
+      --header-icon-dimension: 3.625rem;
+    }
+
     &:hover {
       transform: translateY(-3px);
+
+      @include respond(phone) {
+        transform: translateY(1.25rem);
+      }
     }
 
     &:active {
       transform: translateY(0);
       box-shadow: $header-icon-shadow-2;
+
+      @include respond(phone) {
+        transform: translateY(1.25rem);
+        box-shadow: $header-icon-shadow-2;
+      }
     }
   }
 }

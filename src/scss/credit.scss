@@ -13,6 +13,13 @@
   cursor: pointer;
   transition: opacity 0.3s;
 
+  @include respond(phone) {
+    right: 50%;
+    transform: translateX(50%);
+    bottom: 1.25rem;
+    font-size: 0.5rem;
+  }
+
   &--heart {
     color: $color-red;
   }

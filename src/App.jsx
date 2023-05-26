@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <SideNav />
-      <Overlay />
+      {/* <Overlay /> */}
       <Header />
       <ClockWrapper />
       <Credit />

@@ -16,3 +16,44 @@ $clock-shadow-2: 0.9rem 0 0.6rem rgba($color-black, 0.27);
 $clock-shadow-3: 2.2rem 0 1.25rem rgba($color-black, 0.15);
 $header-icon-shadow-1: 0.3125rem 0 0.625rem rgba($color-black, 0.15);
 $header-icon-shadow-2: 0.156rem 0 0.3125rem rgba($color-black, 0.15);
+
+// Media Query Manager
+
+/*
+
+0 - 600px:       Phone
+600 - 900px:     Tablet Portrait
+900 - 1200px     Tablet Landscape
+1200 - 1800:     is where normal styles apply
+1800px++ :       Big Desktop
+
+
+$breakpoint argument choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+
+*/
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      @content;
+    } //600px
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    } //900px
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) {
+      @content;
+    } //1200px
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    } //1800px
+  }
+}

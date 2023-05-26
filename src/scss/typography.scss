@@ -7,6 +7,10 @@
     font-weight: 600;
     text-transform: uppercase;
     margin-left: 0.9375rem;
+
+    @include respond(tab-port) {
+      font-size: 1.47rem;
+    }
   }
 
   &--secondary {
