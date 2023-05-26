@@ -1,0 +1,17 @@
+@import "./abstract.scss";
+
+.heading {
+  &--primary {
+    font-size: 1.375rem;
+    color: $color-white;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-left: 0.9375rem;
+  }
+
+  &--secondary {
+    font-size: 1.0625rem;
+    color: $color-white;
+    font-weight: 500;
+  }
+}

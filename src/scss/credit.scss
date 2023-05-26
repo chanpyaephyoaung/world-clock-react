@@ -1,0 +1,23 @@
+@import "./abstract.scss";
+
+// Footer
+
+.footer__credit {
+  font-family: "Shadows Into Light", cursive;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  position: absolute;
+  bottom: 0.625rem;
+  right: 3.75rem;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity 0.3s;
+
+  &--heart {
+    color: $color-red;
+  }
+
+  &:hover {
+    opacity: 0.7;
+  }
+}

@@ -1,0 +1,38 @@
+@import "./abstract.scss";
+
+.header {
+  position: absolute;
+  right: 3.75rem;
+  top: 1.875rem;
+  display: flex;
+
+  & > *:not(:first-child) {
+    margin-left: 1.25rem;
+  }
+
+  & > * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  &__icon-wrapper {
+    --header-icon-dimension: 3.75rem;
+    position: relative;
+    width: var(--header-icon-dimension);
+    height: var(--header-icon-dimension);
+    background-color: rgba(#fff, 0.5);
+    border-radius: 50%;
+    box-shadow: $header-icon-shadow-1;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.5s;
+
+    &:hover {
+      transform: translateY(-3px);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: $header-icon-shadow-2;
+    }
+  }
+}
