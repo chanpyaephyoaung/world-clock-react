@@ -4,10 +4,10 @@ import { CiGlobe } from "react-icons/ci";
 import { CiClock1 } from "react-icons/ci";
 import IconChangeTheme from "./IconChangeTheme";
 
-const Header = () => {
+const Header = props => {
   return (
     <header className="header">
-      <IconChangeTheme />
+      <IconChangeTheme onThemeChange={() => props.onThemeChange()} />
       <div className="header__icon-wrapper clock-icon__wrapper">
         <CiClock1 className="icon icon--clock" />
       </div>

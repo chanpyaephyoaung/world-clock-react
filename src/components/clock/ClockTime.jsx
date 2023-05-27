@@ -1,8 +1,9 @@
 import "../../scss/clock.scss";
+import themes from "../../data/themes";
 
-const ClockTime = () => {
+const ClockTime = ({ themeCount }) => {
   return (
-    <div className="time hidden">
+    <div className="time hidden" style={{ color: themes[themeCount].textColor }}>
       <h3 className="time__duration">
         <span className="time__duration__text time__duration__text--number time__duration--hour">
           09
