@@ -9,6 +9,7 @@ import themes from "./data/themes";
 function App() {
   const [themeCount, setThemeCount] = useState(0);
   const [showTime, setShowTime] = useState(false);
+  const [showSideNav, setShowSideNav] = useState(false);
 
   // For changing the color of the background whenever IconChangeTheme is triggered
   useEffect(() => {
@@ -32,11 +33,23 @@ function App() {
     setShowTime(prevShowTime => !prevShowTime);
   };
 
+  const showSideNavHandler = () => {
+    setShowSideNav(prevShowSideNav => !prevShowSideNav);
+  };
+
+  const closeSideNavHandler = () => {
+    setShowSideNav(false);
+  };
+
   return (
     <>
-      {/* <SideNav /> */}
-      {/* <Overlay /> */}
-      <Header onThemeChange={changeTheme} onShowTime={showTimeHandler} />
+      <SideNav showSideNav={showSideNav} onCloseSideNav={closeSideNavHandler} />
+      <Overlay onCloseSideNav={closeSideNavHandler} showOverlay={showSideNav} />
+      <Header
+        onThemeChange={changeTheme}
+        onShowTime={showTimeHandler}
+        onShowSideNav={showSideNavHandler}
+      />
       <ClockWrapper themeCount={themeCount} showTime={showTime} />
       <Credit themeCount={themeCount} />
     </>

@@ -12,7 +12,10 @@ const Header = props => {
         <CiClock1 className="icon icon--clock" />
       </div>
 
-      <div className="header__icon-wrapper globe-icon__wrapper">
+      <div
+        onClick={() => props.onShowSideNav()}
+        className="header__icon-wrapper globe-icon__wrapper"
+      >
         <CiGlobe className="icon icon--globe" />
       </div>
     </header>

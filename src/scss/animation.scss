@@ -2,6 +2,10 @@
   display: none;
 }
 
+.side-nav__tab__arrow--active {
+  transform: rotate(180deg);
+}
+
 // Clock Animation
 
 @keyframes clockIn {

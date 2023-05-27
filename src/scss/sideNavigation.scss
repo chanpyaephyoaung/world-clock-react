@@ -7,8 +7,8 @@
   --side-nav-vertical-gap: 8%;
   position: absolute;
   top: 0;
-  // left: calc(var(--side-nav-width) * -1);
-  left: 0;
+  left: calc(var(--side-nav-width) * -1);
+  // left: 0;
   border-radius: 0 15px 15px 0;
   width: var(--side-nav-width);
   height: 100%;

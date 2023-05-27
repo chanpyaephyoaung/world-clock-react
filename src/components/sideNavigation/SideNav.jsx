@@ -6,15 +6,18 @@ import { IoCloseOutline } from "react-icons/io5";
 import { ImSpinner11 } from "react-icons/im";
 import SideNavTmzContent from "./SideNavTmzContent";
 
-const SideNav = () => {
+const SideNav = ({ showSideNav, onCloseSideNav }) => {
   return (
-    <div className="side-nav">
+    <div className={`side-nav ${showSideNav ? "side-nav__toggle" : ""}`}>
       <div className="side-nav__contents">
         <div className="side-nav__headers">
           <div className="side-nav__header">
             <CiStopwatch className="icon icon--timezone" />
             <h2 className="heading--primary">Timezones</h2>
-            <IoCloseOutline className="icon icon--close side-nav__close-icon" />
+            <IoCloseOutline
+              onClick={() => onCloseSideNav()}
+              className="icon icon--close side-nav__close-icon"
+            />
           </div>
 
           <div className="side-nav__sub-header">
