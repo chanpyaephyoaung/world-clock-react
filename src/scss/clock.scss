@@ -8,11 +8,11 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  // justify-content: center;
-  justify-content: space-between;
+  justify-content: center;
+  // justify-content: space-between;
 
   & > * {
-    // position: absolute;
+    position: absolute;
   }
 
   @include respond(phone) {

@@ -8,7 +8,7 @@ const Header = props => {
   return (
     <header className="header">
       <IconChangeTheme onThemeChange={() => props.onThemeChange()} />
-      <div className="header__icon-wrapper clock-icon__wrapper">
+      <div onClick={() => props.onShowTime()} className="header__icon-wrapper clock-icon__wrapper">
         <CiClock1 className="icon icon--clock" />
       </div>
 

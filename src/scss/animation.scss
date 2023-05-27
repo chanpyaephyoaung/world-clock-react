@@ -1,3 +1,7 @@
+.hidden {
+  display: none;
+}
+
 // Clock Animation
 
 @keyframes clockIn {
@@ -16,5 +20,54 @@
   100% {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+// For Clock & Time
+
+@keyframes moveToTop {
+  0% {
+    top: 50%;
+    transform: translateY((-50%));
+  }
+  100% {
+    top: 0;
+    transform: translateY((0));
+  }
+}
+
+@keyframes moveToBottom {
+  0% {
+    bottom: 50%;
+    transform: translateY((50%));
+  }
+  100% {
+    bottom: 0;
+    transform: translateY((0));
+  }
+}
+
+@keyframes moveBackToCenterFromTop {
+  0% {
+    top: 0;
+    transform: translateY((0));
+  }
+  100% {
+    top: 50%;
+    transform: translateY((-50%));
+  }
+}
+
+@keyframes moveBackToCenterFromBottom {
+  0% {
+    bottom: 0;
+    transform: translateY((0));
+    opacity: 1;
+  }
+
+  100% {
+    bottom: 50%;
+    transform: translateY((50%));
+    opacity: 0;
   }
 }

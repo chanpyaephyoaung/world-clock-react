@@ -2,11 +2,11 @@ import "../../scss/clock.scss";
 import Clock from "./Clock";
 import ClockTime from "./ClockTime";
 
-const ClockWrapper = props => {
+const ClockWrapper = ({ themeCount, showTime }) => {
   return (
     <main className="clock-wrapper">
-      <Clock themeCount={props.themeCount} />
-      <ClockTime themeCount={props.themeCount} />
+      <Clock themeCount={themeCount} showTime={showTime} />
+      <ClockTime themeCount={themeCount} showTime={showTime} />
     </main>
   );
 };

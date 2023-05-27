@@ -4,12 +4,22 @@ import themes from "../../data/themes";
 
 let initialized = false;
 
-const Clock = ({ themeCount }) => {
+const Clock = ({ themeCount, showTime }) => {
   const clockRef = useRef();
   const clockInnersRef = useRef([]);
 
+  // Allow the clock to stay on top if the time display is activated
+  useEffect(() => {
+    if (showTime) {
+      clockRef.current.style.top = "0";
+    } else {
+      clockRef.current.style.top = "";
+    }
+  }, [showTime]);
+
   // For changing the clock theme whenever the IconChangeTheme is triggered
   useEffect(() => {
+    console.log("Sucker");
     const clockImageUrl = new URL(
       `../../assets/clock/${themes[themeCount].clock}.png`,
       import.meta.url
@@ -39,7 +49,13 @@ const Clock = ({ themeCount }) => {
   }, [themeCount]);
 
   return (
-    <div ref={clockRef} className="clock">
+    <div
+      ref={clockRef}
+      className="clock"
+      style={{
+        animation: showTime ? "moveToTop .2s forwards" : "moveBackToCenterFromTop .2s forwards",
+      }}
+    >
       <div ref={el => (clockInnersRef.current[0] = el)} className="clock__pivot"></div>
       <div
         ref={el => (clockInnersRef.current[1] = el)}

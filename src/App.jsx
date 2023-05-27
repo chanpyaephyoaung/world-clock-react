@@ -8,6 +8,7 @@ import themes from "./data/themes";
 
 function App() {
   const [themeCount, setThemeCount] = useState(0);
+  const [showTime, setShowTime] = useState(false);
 
   // For changing the color of the background whenever IconChangeTheme is triggered
   useEffect(() => {
@@ -27,12 +28,16 @@ function App() {
     }
   };
 
+  const showTimeHandler = () => {
+    setShowTime(prevShowTime => !prevShowTime);
+  };
+
   return (
     <>
       {/* <SideNav /> */}
       {/* <Overlay /> */}
-      <Header onThemeChange={changeTheme} />
-      <ClockWrapper themeCount={themeCount} />
+      <Header onThemeChange={changeTheme} onShowTime={showTimeHandler} />
+      <ClockWrapper themeCount={themeCount} showTime={showTime} />
       <Credit themeCount={themeCount} />
     </>
   );
