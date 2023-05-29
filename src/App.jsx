@@ -5,11 +5,56 @@ import Header from "./components/header/Header";
 import Overlay from "./components/overlay/Overlay";
 import SideNav from "./components/sideNavigation/SideNav";
 import themes from "./data/themes";
+import { sliceCategory, sliceZoneName, categorize } from "./utils/timezones";
 
 function App() {
   const [themeCount, setThemeCount] = useState(0);
   const [showTime, setShowTime] = useState(false);
   const [showSideNav, setShowSideNav] = useState(false);
+  const [tmzData, setTmzData] = useState([]);
+
+  // Fetching timezones
+  useEffect(() => {
+    // Fetch timezones
+    const fetchTmzs = async () => {
+      try {
+        const response = await fetch(
+          `http://api.timezonedb.com/v2.1/list-time-zone?key=${
+            import.meta.env.VITE_TMZDB_API_KEY
+          }&format=json`
+        );
+        if (!response.ok) throw new Error("Could not fetch timezones!");
+
+        let { zones: rawTimezones } = await response.json();
+
+        console.log(rawTimezones);
+
+        // Data Transformation
+        rawTimezones = rawTimezones.map(({ zoneName }) => ({
+          category: sliceCategory(zoneName),
+          timezone: sliceZoneName(zoneName),
+        }));
+
+        const categories = categorize(rawTimezones.map(({ category }) => category));
+
+        let finalTimezones = [];
+        categories.forEach(category => {
+          finalTimezones.push({
+            category,
+            timezones: rawTimezones
+              .filter(tmz => tmz.category === category)
+              .map(({ timezone }) => timezone),
+          });
+        });
+
+        // Store transformed data
+        setTmzData(finalTimezones);
+      } catch (err) {
+        console.error(`${err.message} 😭😭`);
+      }
+    };
+    fetchTmzs();
+  }, []);
 
   // For changing the color of the background whenever IconChangeTheme is triggered
   useEffect(() => {
@@ -43,7 +88,7 @@ function App() {
 
   return (
     <>
-      <SideNav showSideNav={showSideNav} onCloseSideNav={closeSideNavHandler} />
+      <SideNav showSideNav={showSideNav} onCloseSideNav={closeSideNavHandler} tmzData={tmzData} />
       <Overlay onCloseSideNav={closeSideNavHandler} showOverlay={showSideNav} />
       <Header
         onThemeChange={changeTheme}

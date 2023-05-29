@@ -19,7 +19,6 @@ const Clock = ({ themeCount, showTime }) => {
 
   // For changing the clock theme whenever the IconChangeTheme is triggered
   useEffect(() => {
-    console.log("Sucker");
     const clockImageUrl = new URL(
       `../../assets/clock/${themes[themeCount].clock}.png`,
       import.meta.url

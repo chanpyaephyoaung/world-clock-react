@@ -1,19 +1,8 @@
 import SideNavTmzContentCategory from "./SideNavTmzContentCategory";
 import SideNavTmzContentTmzs from "./SideNavTmzContentTmzs";
 
-const DUMMY_TMZS = [
-  {
-    category: "Africa",
-    timezones: ["Abidjan", "Accra", "Addis Ababa"],
-  },
-  {
-    category: "America",
-    timezones: ["Adak", "Anchorang", "Anguilla", "Antigua"],
-  },
-];
-
-const SideNavTmzContent = () => {
-  return DUMMY_TMZS.map(content => {
+const SideNavTmzContent = ({ tmzData }) => {
+  return tmzData.map(content => {
     return (
       <div key={content.category} className="side-nav__content">
         <SideNavTmzContentCategory category={content.category} />
