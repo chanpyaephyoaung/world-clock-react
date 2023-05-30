@@ -15,7 +15,7 @@ const SideNav = ({ showSideNav, onCloseSideNav, tmzData }) => {
             <CiStopwatch className="icon icon--timezone" />
             <h2 className="heading--primary">Timezones</h2>
             <IoCloseOutline
-              onClick={() => onCloseSideNav()}
+              onClick={onCloseSideNav}
               className="icon icon--close side-nav__close-icon"
             />
           </div>

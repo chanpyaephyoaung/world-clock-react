@@ -4,18 +4,15 @@ import { CiGlobe } from "react-icons/ci";
 import { CiClock1 } from "react-icons/ci";
 import IconChangeTheme from "./IconChangeTheme";
 
-const Header = props => {
+const Header = ({ onThemeChange, onShowTime, onShowSideNav }) => {
   return (
     <header className="header">
-      <IconChangeTheme onThemeChange={() => props.onThemeChange()} />
-      <div onClick={() => props.onShowTime()} className="header__icon-wrapper clock-icon__wrapper">
+      <IconChangeTheme onThemeChange={onThemeChange} />
+      <div onClick={onShowTime} className="header__icon-wrapper clock-icon__wrapper">
         <CiClock1 className="icon icon--clock" />
       </div>
 
-      <div
-        onClick={() => props.onShowSideNav()}
-        className="header__icon-wrapper globe-icon__wrapper"
-      >
+      <div onClick={onShowSideNav} className="header__icon-wrapper globe-icon__wrapper">
         <CiGlobe className="icon icon--globe" />
       </div>
     </header>

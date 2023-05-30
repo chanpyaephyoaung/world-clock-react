@@ -1,10 +1,15 @@
-const SideNavTmzContentTmzs = ({ category, tmz }) => {
+const SideNavTmzContentTmzs = ({ tmz, onTabConnect, isActiveTmz, onChangeTmz }) => {
   // Replacing '_' with white space
   const tmzText = tmz.replaceAll("_", " ");
+
+  const handleTmzClick = () => {
+    onTabConnect();
+    onChangeTmz(tmz);
+  };
   return (
-    <a className="side-nav__text side-nav__timezone" data-timezone={`${category}/${tmz}`}>
+    <a className="side-nav__text side-nav__timezone" onClick={handleTmzClick}>
       {tmzText}
-      <span className="side-nav__timezone--active"></span>
+      {isActiveTmz && <span className="side-nav__timezone--active"></span>}
     </a>
   );
 };

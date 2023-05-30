@@ -38,8 +38,9 @@ function App() {
         const categories = categorize(rawTimezones.map(({ category }) => category));
 
         let finalTimezones = [];
-        categories.forEach(category => {
+        categories.forEach((category, index) => {
           finalTimezones.push({
+            id: index + 1,
             category,
             timezones: rawTimezones
               .filter(tmz => tmz.category === category)
