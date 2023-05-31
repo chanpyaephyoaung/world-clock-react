@@ -1,13 +1,15 @@
-import { HiChevronUp } from "react-icons/hi2";
+import { HiChevronDown } from "react-icons/hi2";
 
-const SideNavTmzContentCategory = ({ category, onShow, isTabConnected }) => {
+const SideNavTmzContentCategory = ({ category, onShow, isTabConnected, isActive }) => {
   return (
-    <div className="side-nav__tab" data-category={category} onClick={onShow}>
+    <div className="side-nav__tab" onClick={onShow}>
       <a className="heading--secondary side-nav__tab__title">
         {category}
         {isTabConnected && <span className="side-nav__tab__title--active">Connected</span>}
       </a>
-      <HiChevronUp className="side-nav__tab__arrow" />
+      <HiChevronDown
+        className={`side-nav__tab__arrow ${isActive ? "side-nav__tab__arrow--active" : ""}`}
+      />
     </div>
   );
 };

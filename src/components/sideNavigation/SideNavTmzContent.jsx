@@ -25,7 +25,7 @@ const SideNavTmzContent = ({ tmzData }) => {
         />
 
         <SideNavTmzContentTmzsWrapper
-          content={content}
+          timezones={content.timezones}
           isActive={toggleActiveIndex === content.id}
           onTabConnect={() => setConnectedTmzTabIndex(toggleActiveIndex)}
           connectedTmz={connectedTmz}

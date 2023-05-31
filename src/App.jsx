@@ -27,8 +27,6 @@ function App() {
 
         let { zones: rawTimezones } = await response.json();
 
-        console.log(rawTimezones);
-
         // Data Transformation
         rawTimezones = rawTimezones.map(({ zoneName }) => ({
           category: sliceCategory(zoneName),
