@@ -1,12 +1,28 @@
 import { useEffect, useRef } from "react";
 import "../../scss/clock.scss";
 import themes from "../../data/themes";
+import { getTime, setClock } from "../../utils/clock";
 
 let initialized = false;
 
 const Clock = ({ themeCount, showTime }) => {
   const clockRef = useRef();
-  const clockInnersRef = useRef([]);
+  const clockPivot = useRef(null);
+  const hourHand = useRef(null);
+  const minuteHand = useRef(null);
+  const secondHand = useRef(null);
+
+  const tmz = "Asia/Yangon";
+
+  const [secondRatio, minuteRatio, hourRatio] = getTime(tmz);
+
+  // Run the clock
+  useEffect(() => {
+    const clockInterval = setInterval(() => {
+      setClock(secondHand.current, minuteHand.current, hourHand.current, tmz);
+    }, 1000);
+    return () => clearTimeout(clockInterval);
+  }, []);
 
   // Allow the clock to stay on top if the time display is activated
   useEffect(() => {
@@ -38,8 +54,8 @@ const Clock = ({ themeCount, showTime }) => {
       clockRef.current.style.backgroundImage = `url(${clockImageUrl})`;
 
       // Change the color of hands of the clock
-      clockInnersRef.current.forEach(
-        inner => (inner.style.backgroundColor = themes[themeCount].clockInnersColor)
+      [clockPivot, hourHand, minuteHand, secondHand].forEach(
+        inner => (inner.current.style.backgroundColor = themes[themeCount].clockInnersColor)
       );
     }, 200);
 
@@ -55,18 +71,21 @@ const Clock = ({ themeCount, showTime }) => {
         animation: showTime ? "moveToTop .2s forwards" : "moveBackToCenterFromTop .2s forwards",
       }}
     >
-      <div ref={el => (clockInnersRef.current[0] = el)} className="clock__pivot"></div>
+      <div ref={clockPivot} className="clock__pivot"></div>
       <div
-        ref={el => (clockInnersRef.current[1] = el)}
+        ref={hourHand}
         className="clock__hand clock__hand--hour"
+        style={{ transform: `translateX(-50%) rotate(${hourRatio * 360}deg)` }}
       ></div>
       <div
-        ref={el => (clockInnersRef.current[2] = el)}
+        ref={minuteHand}
         className="clock__hand clock__hand--minute"
+        style={{ transform: `translateX(-50%) rotate(${minuteRatio * 360}deg)` }}
       ></div>
       <div
-        ref={el => (clockInnersRef.current[3] = el)}
+        ref={secondHand}
         className="clock__hand clock__hand--second"
+        style={{ transform: `translateX(-50%) rotate(${secondRatio * 360}deg)` }}
       ></div>
     </div>
   );
