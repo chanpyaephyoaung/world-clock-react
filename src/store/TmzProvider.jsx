@@ -4,8 +4,6 @@ import TmzContext from "./tmz-context";
 const TmzProvider = props => {
   const [currentTmz, setCurrentTmz] = useState("Asia/Yangon");
 
-  console.log(currentTmz);
-
   const handleSetTmz = tmz => {
     setCurrentTmz(tmz);
   };

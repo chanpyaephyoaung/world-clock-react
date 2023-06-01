@@ -1,3 +1,4 @@
+import React from "react";
 import "../../scss/sideNavigation.scss";
 import "../../scss/typography.scss";
 import "../../scss/icons.scss";
@@ -41,4 +42,4 @@ const SideNav = ({ showSideNav, onCloseSideNav, tmzData }) => {
   );
 };
 
-export default SideNav;
+export default React.memo(SideNav);

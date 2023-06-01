@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import ClockWrapper from "./components/clock/ClockWrapper";
 import Credit from "./components/credit/Credit";
 import Header from "./components/header/Header";
@@ -53,9 +53,9 @@ function App() {
     setShowSideNav(prevShowSideNav => !prevShowSideNav);
   };
 
-  const closeSideNavHandler = () => {
+  const closeSideNavHandler = useCallback(() => {
     setShowSideNav(false);
-  };
+  }, []);
 
   return (
     <TmzProvider>

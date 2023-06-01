@@ -1,3 +1,4 @@
+import React from "react";
 import "../../scss/credit.scss";
 import themes from "../../data/themes";
 
@@ -11,4 +12,4 @@ const Credit = ({ themeCount }) => {
   );
 };
 
-export default Credit;
+export default React.memo(Credit);
