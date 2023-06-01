@@ -5,6 +5,7 @@ import Header from "./components/header/Header";
 import Overlay from "./components/overlay/Overlay";
 import SideNav from "./components/sideNavigation/SideNav";
 import themes from "./data/themes";
+import TmzProvider from "./store/TmzProvider";
 import { sliceCategory, sliceZoneName, categorize } from "./utils/timezones";
 
 function App() {
@@ -86,7 +87,7 @@ function App() {
   };
 
   return (
-    <>
+    <TmzProvider>
       <SideNav showSideNav={showSideNav} onCloseSideNav={closeSideNavHandler} tmzData={tmzData} />
       <Overlay onCloseSideNav={closeSideNavHandler} showOverlay={showSideNav} />
       <Header
@@ -96,7 +97,7 @@ function App() {
       />
       <ClockWrapper themeCount={themeCount} showTime={showTime} />
       <Credit themeCount={themeCount} />
-    </>
+    </TmzProvider>
   );
 }
 

@@ -1,11 +1,18 @@
-const SideNavTmzContentTmzs = ({ tmz, onTabConnect, isActiveTmz, onChangeTmz }) => {
+import { useContext } from "react";
+import TmzContext from "../../store/tmz-context";
+
+const SideNavTmzContentTmzs = ({ tmz, onTabConnect, isActiveTmz }) => {
+  const tmzCtx = useContext(TmzContext);
+
   // Replacing '_' with white space
   const tmzText = tmz.replaceAll("_", " ");
 
   const handleTmzClick = () => {
     onTabConnect();
-    onChangeTmz(tmz);
+    // Change Timezone
+    tmzCtx.setTmz(tmz);
   };
+
   return (
     <a className="side-nav__text side-nav__timezone" onClick={handleTmzClick}>
       {tmzText}

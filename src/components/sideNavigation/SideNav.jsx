@@ -31,28 +31,6 @@ const SideNav = ({ showSideNav, onCloseSideNav, tmzData }) => {
 
         <div className="side-nav__content-container">
           <SideNavTmzContent tmzData={tmzData} />
-          {/* <div className="side-nav__content">
-            <div className="side-nav__tab" data-category="africa">
-              <a className="heading--secondary side-nav__tab__title">
-                Africa
-                <span className="side-nav__tab__title--active">Connected</span>
-              </a>
-              <HiChevronUp className="side-nav__tab__arrow" aria-hidden="true" />
-            </div>
-
-            <div className="side-nav__tab__content hide">
-              <a className="side-nav__text side-nav__timezone" data-timezone="Africa/Abidjan">
-                Abidjan
-                <span className="side-nav__timezone--active"></span>
-              </a>
-              <a className="side-nav__text side-nav__timezone" data-timezone="Africa/Abidjan">
-                Accra
-              </a>
-              <a className="side-nav__text side-nav__timezone" data-timezone="Africa/Abidjan">
-                Addis Ababa
-              </a>
-            </div>
-          </div> */}
         </div>
 
         <p className="side-nav__footer-text">

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import "../../scss/icons.scss";
 import animateIconChangeTheme from "../../utils/animateIconChangeTheme";
 
-const IconChangeTheme = props => {
+const IconChangeTheme = ({ onThemeChange }) => {
   const [counter, setCounter] = useState(0);
   const modifyIconLine1 = useRef(null);
   const modifyIconLine2 = useRef(null);
@@ -29,7 +29,7 @@ const IconChangeTheme = props => {
 
   const clickHandler = () => {
     animateIconChangeTheme(iconChangeThemeOption);
-    props.onThemeChange();
+    onThemeChange();
   };
 
   return (
