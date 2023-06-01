@@ -6,7 +6,7 @@ import Overlay from "./components/overlay/Overlay";
 import SideNav from "./components/sideNavigation/SideNav";
 import themes from "./data/themes";
 import TmzProvider from "./store/TmzProvider";
-import { sliceCategory, sliceZoneName, categorize } from "./utils/timezones";
+import { fetchTmzs } from "./utils/timezones";
 
 function App() {
   const [themeCount, setThemeCount] = useState(0);
@@ -17,43 +17,14 @@ function App() {
   // Fetching timezones
   useEffect(() => {
     // Fetch timezones
-    const fetchTmzs = async () => {
+    const fetchTmzsAsync = async () => {
       try {
-        const response = await fetch(
-          `http://api.timezonedb.com/v2.1/list-time-zone?key=${
-            import.meta.env.VITE_TMZDB_API_KEY
-          }&format=json`
-        );
-        if (!response.ok) throw new Error("Could not fetch timezones!");
-
-        let { zones: rawTimezones } = await response.json();
-
-        // Data Transformation
-        rawTimezones = rawTimezones.map(({ zoneName }) => ({
-          category: sliceCategory(zoneName),
-          timezone: sliceZoneName(zoneName),
-        }));
-
-        const categories = categorize(rawTimezones.map(({ category }) => category));
-
-        let finalTimezones = [];
-        categories.forEach((category, index) => {
-          finalTimezones.push({
-            id: index + 1,
-            category,
-            timezones: rawTimezones
-              .filter(tmz => tmz.category === category)
-              .map(({ timezone }) => timezone),
-          });
-        });
-
-        // Store transformed data
-        setTmzData(finalTimezones);
+        await fetchTmzs(finalTmzs => setTmzData(finalTmzs));
       } catch (err) {
-        console.error(`${err.message} 😭😭`);
+        console.error(err);
       }
     };
-    fetchTmzs();
+    fetchTmzsAsync();
   }, []);
 
   // For changing the color of the background whenever IconChangeTheme is triggered
