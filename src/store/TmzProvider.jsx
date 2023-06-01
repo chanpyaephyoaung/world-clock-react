@@ -2,21 +2,16 @@ import { useState } from "react";
 import TmzContext from "./tmz-context";
 
 const TmzProvider = props => {
-  const [connectedCategory, setConnctedCategory] = useState("Asia");
-  const [connectedTmz, setConnectedTmz] = useState("Yangon");
+  const [currentTmz, setCurrentTmz] = useState("Asia/Yangon");
+
+  console.log(currentTmz);
 
   const handleSetTmz = tmz => {
-    setConnectedTmz(tmz);
-  };
-
-  const handleSetCategory = category => {
-    setConnctedCategory(category);
+    setCurrentTmz(tmz);
   };
 
   const tmzContext = {
-    connectedCategory,
-    connectedTmz,
-    setCategory: handleSetCategory,
+    currentTmz,
     setTmz: handleSetTmz,
   };
 

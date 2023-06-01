@@ -13,6 +13,7 @@ export const categorize = tmzs => {
   return [...new Set(tmzs)];
 };
 
+// Fetching timezones list
 export const fetchTmzs = async storeData => {
   try {
     const response = await fetch(
@@ -27,7 +28,7 @@ export const fetchTmzs = async storeData => {
     // Data Transformation
     rawTimezones = rawTimezones.map(({ zoneName }) => ({
       category: sliceCategory(zoneName),
-      timezone: sliceZoneName(zoneName),
+      timezone: zoneName,
     }));
 
     const categories = categorize(rawTimezones.map(({ category }) => category));

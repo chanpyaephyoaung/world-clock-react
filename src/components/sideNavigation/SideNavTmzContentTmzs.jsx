@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import TmzContext from "../../store/tmz-context";
+import { sliceZoneName } from "../../utils/timezones";
 
 const SideNavTmzContentTmzs = ({ tmz, onTabConnect, isActiveTmz }) => {
   const tmzCtx = useContext(TmzContext);
 
   // Replacing '_' with white space
-  const tmzText = tmz.replaceAll("_", " ");
+  const tmzText = sliceZoneName(tmz).replaceAll("_", " ");
 
   const handleTmzClick = () => {
     onTabConnect();

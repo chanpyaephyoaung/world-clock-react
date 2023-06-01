@@ -1,8 +1,9 @@
 import "../../scss/clock.scss";
 import "../../scss/animation.scss";
 import themes from "../../data/themes";
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { setTime } from "../../utils/clock";
+import TmzContext from "../../store/tmz-context";
 
 const ClockTime = ({ themeCount, showTime }) => {
   const hourTime = useRef(null);
@@ -10,14 +11,20 @@ const ClockTime = ({ themeCount, showTime }) => {
   const secondTime = useRef(null);
   const dayPeriod = useRef(null);
 
-  const tmz = "Asia/Yangon";
+  const tmzCtx = useContext(TmzContext);
 
   useEffect(() => {
     const clockInterval = setInterval(() => {
-      setTime(secondTime.current, minuteTime.current, hourTime.current, dayPeriod.current, tmz);
+      setTime(
+        secondTime.current,
+        minuteTime.current,
+        hourTime.current,
+        dayPeriod.current,
+        tmzCtx.currentTmz
+      );
     }, 1000);
     return () => clearTimeout(clockInterval);
-  }, []);
+  }, [tmzCtx.currentTmz]);
 
   return (
     <div

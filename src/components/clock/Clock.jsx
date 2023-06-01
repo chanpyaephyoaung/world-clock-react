@@ -1,7 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import "../../scss/clock.scss";
 import themes from "../../data/themes";
 import { getTime, setClock } from "../../utils/clock";
+import TmzContext from "../../store/tmz-context";
 
 let initialized = false;
 
@@ -12,17 +13,17 @@ const Clock = ({ themeCount, showTime }) => {
   const minuteHand = useRef(null);
   const secondHand = useRef(null);
 
-  const tmz = "Asia/Yangon";
+  const tmzCtx = useContext(TmzContext);
 
-  const [secondRatio, minuteRatio, hourRatio] = getTime(tmz);
+  const [secondRatio, minuteRatio, hourRatio] = getTime(tmzCtx.currentTmz);
 
   // Run the clock
   useEffect(() => {
     const clockInterval = setInterval(() => {
-      setClock(secondHand.current, minuteHand.current, hourHand.current, tmz);
+      setClock(secondHand.current, minuteHand.current, hourHand.current, tmzCtx.currentTmz);
     }, 1000);
     return () => clearTimeout(clockInterval);
-  }, []);
+  }, [tmzCtx.currentTmz]);
 
   // Allow the clock to stay on top if the time display is activated
   useEffect(() => {
