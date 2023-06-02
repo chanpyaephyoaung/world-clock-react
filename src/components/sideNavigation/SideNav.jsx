@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext, useRef } from "react";
 import "../../scss/sideNavigation.scss";
 import "../../scss/typography.scss";
 import "../../scss/icons.scss";
@@ -6,8 +6,25 @@ import { CiStopwatch } from "react-icons/ci";
 import { IoCloseOutline } from "react-icons/io5";
 import { ImSpinner11 } from "react-icons/im";
 import SideNavTmzContent from "./SideNavTmzContent";
+import TmzContext from "../../store/tmz-context";
 
 const SideNav = ({ showSideNav, onCloseSideNav }) => {
+  const revertIconRef = useRef(null);
+  const [animateRevertIcon, setanimateRevertIcon] = useState(false);
+
+  const tmzCtx = useContext(TmzContext);
+  const { initialTmz, currentTmz } = tmzCtx;
+
+  // Revert timezone back to initial timezone
+  const revertBackToInitialTmz = () => {
+    // Only revert if the current tmz is not the same as initial tmz
+    if (initialTmz === currentTmz) return;
+    tmzCtx.setTmz(initialTmz);
+    // A little rotation animation
+    setanimateRevertIcon(true);
+    setTimeout(() => setanimateRevertIcon(false), 300);
+  };
+
   return (
     <div className={`side-nav ${showSideNav ? "side-nav__toggle" : ""}`}>
       <div className="side-nav__contents">
@@ -26,7 +43,15 @@ const SideNav = ({ showSideNav, onCloseSideNav }) => {
             <p className="side-nav__text side-nav__text--green side-nav__current-timezone">
               Asia/Rangoon
             </p>
-            <ImSpinner11 className="side-nav__sub-header__revert-icon" />
+
+            <div
+              ref={revertIconRef}
+              className={`side-nav__sub-header__revert-icon ${
+                animateRevertIcon ? "side-nav__sub-header__revert-icon--animate" : ""
+              }`}
+            >
+              <ImSpinner11 onClick={revertBackToInitialTmz} />
+            </div>
           </div>
         </div>
 

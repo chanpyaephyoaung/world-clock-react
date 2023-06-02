@@ -3,7 +3,10 @@ import TmzContext from "./tmz-context";
 import { getCurrentLocation, fetchCurrentTmz } from "../utils/location";
 import { fetchTmzs } from "../utils/timezones";
 
+let initial = false;
+
 const TmzProvider = props => {
+  const [initialTmz, setInitialTmz] = useState("");
   const [currentTmz, setCurrentTmz] = useState("");
   const [tmzData, setTmzData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -18,6 +21,12 @@ const TmzProvider = props => {
         // Fetch current timezone using current coords
         const initialTmz = await fetchCurrentTmz(lat, long);
         setCurrentTmz(initialTmz);
+
+        // Set initial tmz for once only
+        if (!initial) {
+          initial = true;
+          setInitialTmz(initialTmz);
+        }
 
         // Fetch timezones
         const fetchedTmzData = await fetchTmzs();
@@ -35,6 +44,7 @@ const TmzProvider = props => {
   };
 
   const tmzContext = {
+    initialTmz,
     currentTmz,
     tmzData,
     setTmz: handleSetTmz,
