@@ -41,7 +41,7 @@ const SideNav = ({ showSideNav, onCloseSideNav }) => {
           <div className="side-nav__sub-header">
             <h2 className="heading--secondary side-nav__sub-header__title">Current Timezone: </h2>
             <p className="side-nav__text side-nav__text--green side-nav__current-timezone">
-              Asia/Rangoon
+              {currentTmz}
             </p>
 
             <div
