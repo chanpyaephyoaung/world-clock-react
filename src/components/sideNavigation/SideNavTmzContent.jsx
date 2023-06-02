@@ -3,11 +3,11 @@ import SideNavTmzContentCategory from "./SideNavTmzContentCategory";
 import SideNavTmzContentTmzsWrapper from "./SideNavTmzContentTmzsWrapper";
 import TmzContext from "../../store/tmz-context";
 
-const SideNavTmzContent = ({ tmzData }) => {
+const SideNavTmzContent = () => {
   const tmzCtx = useContext(TmzContext);
+  const { tmzData } = tmzCtx;
 
   const [toggleActiveIndex, setToggleActiveIndex] = useState();
-  const [connectedTmzTabIndex, setConnectedTmzTabIndex] = useState();
 
   const handleShowTmzContent = id => {
     // Close all tmz content if the current active tab is clicked again
@@ -22,15 +22,14 @@ const SideNavTmzContent = ({ tmzData }) => {
         <SideNavTmzContentCategory
           category={content.category}
           isActive={toggleActiveIndex === content.id}
-          isTabConnected={connectedTmzTabIndex === content.id}
+          connectedTmz={tmzCtx.currentTmz}
           onShow={() => handleShowTmzContent(content.id)}
         />
 
         <SideNavTmzContentTmzsWrapper
           content={content}
           isActive={toggleActiveIndex === content.id}
-          onTabConnect={() => setConnectedTmzTabIndex(toggleActiveIndex)}
-          connectedTmz={tmzCtx.connectedTmz}
+          connectedTmz={tmzCtx.currentTmz}
         />
       </div>
     );

@@ -7,7 +7,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import { ImSpinner11 } from "react-icons/im";
 import SideNavTmzContent from "./SideNavTmzContent";
 
-const SideNav = ({ showSideNav, onCloseSideNav, tmzData }) => {
+const SideNav = ({ showSideNav, onCloseSideNav }) => {
   return (
     <div className={`side-nav ${showSideNav ? "side-nav__toggle" : ""}`}>
       <div className="side-nav__contents">
@@ -31,7 +31,7 @@ const SideNav = ({ showSideNav, onCloseSideNav, tmzData }) => {
         </div>
 
         <div className="side-nav__content-container">
-          <SideNavTmzContent tmzData={tmzData} />
+          <SideNavTmzContent />
         </div>
 
         <p className="side-nav__footer-text">

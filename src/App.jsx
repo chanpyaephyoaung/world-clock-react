@@ -6,26 +6,11 @@ import Overlay from "./components/overlay/Overlay";
 import SideNav from "./components/sideNavigation/SideNav";
 import themes from "./data/themes";
 import TmzProvider from "./store/TmzProvider";
-import { fetchTmzs } from "./utils/timezones";
 
 function App() {
   const [themeCount, setThemeCount] = useState(0);
   const [showTime, setShowTime] = useState(false);
   const [showSideNav, setShowSideNav] = useState(false);
-  const [tmzData, setTmzData] = useState([]);
-
-  // Fetching timezones
-  useEffect(() => {
-    // Fetch timezones
-    const fetchTmzsAsync = async () => {
-      try {
-        await fetchTmzs(finalTmzs => setTmzData(finalTmzs));
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetchTmzsAsync();
-  }, []);
 
   // For changing the color of the background whenever IconChangeTheme is triggered
   useEffect(() => {
@@ -59,7 +44,7 @@ function App() {
 
   return (
     <TmzProvider>
-      <SideNav showSideNav={showSideNav} onCloseSideNav={closeSideNavHandler} tmzData={tmzData} />
+      <SideNav showSideNav={showSideNav} onCloseSideNav={closeSideNavHandler} />
       <Overlay onCloseSideNav={closeSideNavHandler} showOverlay={showSideNav} />
       <Header
         onThemeChange={changeTheme}

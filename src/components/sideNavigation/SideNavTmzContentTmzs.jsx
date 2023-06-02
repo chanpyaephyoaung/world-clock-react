@@ -9,7 +9,7 @@ const SideNavTmzContentTmzs = ({ tmz, onTabConnect, isActiveTmz }) => {
   const tmzText = sliceZoneName(tmz).replaceAll("_", " ");
 
   const handleTmzClick = () => {
-    onTabConnect();
+    // onTabConnect();
     // Change Timezone
     tmzCtx.setTmz(tmz);
   };

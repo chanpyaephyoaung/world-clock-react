@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef } from "react";
 import "../../scss/clock.scss";
 import themes from "../../data/themes";
-import { getTime, setClock } from "../../utils/clock";
+import { setClock } from "../../utils/clock";
 import TmzContext from "../../store/tmz-context";
 
 let initialized = false;
@@ -14,8 +14,6 @@ const Clock = ({ themeCount, showTime }) => {
   const secondHand = useRef(null);
 
   const tmzCtx = useContext(TmzContext);
-
-  const [secondRatio, minuteRatio, hourRatio] = getTime(tmzCtx.currentTmz);
 
   // Run the clock
   useEffect(() => {
@@ -76,17 +74,17 @@ const Clock = ({ themeCount, showTime }) => {
       <div
         ref={hourHand}
         className="clock__hand clock__hand--hour"
-        style={{ transform: `translateX(-50%) rotate(${hourRatio * 360}deg)` }}
+        style={{ transform: `translateX(-50%) rotate(0deg)` }}
       ></div>
       <div
         ref={minuteHand}
         className="clock__hand clock__hand--minute"
-        style={{ transform: `translateX(-50%) rotate(${minuteRatio * 360}deg)` }}
+        style={{ transform: `translateX(-50%) rotate(0deg)` }}
       ></div>
       <div
         ref={secondHand}
         className="clock__hand clock__hand--second"
-        style={{ transform: `translateX(-50%) rotate(${secondRatio * 360}deg)` }}
+        style={{ transform: `translateX(-50%) rotate(0deg)` }}
       ></div>
     </div>
   );

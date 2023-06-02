@@ -14,7 +14,7 @@ export const categorize = tmzs => {
 };
 
 // Fetching timezones list
-export const fetchTmzs = async storeData => {
+export const fetchTmzs = async () => {
   try {
     const response = await fetch(
       `http://api.timezonedb.com/v2.1/list-time-zone?key=${
@@ -45,7 +45,8 @@ export const fetchTmzs = async storeData => {
     });
 
     // Store transformed data
-    storeData(finalTimezones);
+    // storeData(finalTimezones);
+    return finalTimezones;
   } catch (err) {
     console.error(`${err.message} 😭😭😭`);
     throw err;

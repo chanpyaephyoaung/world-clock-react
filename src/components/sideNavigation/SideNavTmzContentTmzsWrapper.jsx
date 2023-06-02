@@ -1,15 +1,10 @@
 import SideNavTmzContentTmzs from "./SideNavTmzContentTmzs";
 
-const SideNavTmzContentTmzsWrapper = ({ content, isActive, onTabConnect, connectedTmz }) => {
+const SideNavTmzContentTmzsWrapper = ({ content, isActive, connectedTmz }) => {
   return (
     <div className={`side-nav__tab__content ${!isActive ? "hidden" : ""}`}>
       {content.timezones.map(tmz => (
-        <SideNavTmzContentTmzs
-          key={tmz}
-          tmz={tmz}
-          onTabConnect={onTabConnect}
-          isActiveTmz={connectedTmz === tmz}
-        />
+        <SideNavTmzContentTmzs key={tmz} tmz={tmz} isActiveTmz={connectedTmz === tmz} />
       ))}
     </div>
   );
