@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef } from "react";
 import "../../scss/clock.scss";
 import themes from "../../data/themes";
-import { setClock } from "../../utils/clock";
+import { animateClockHandsOnTmzChange, setClock } from "../../utils/clock";
 import TmzContext from "../../store/tmz-context";
 
 let initialized = false;
@@ -17,9 +17,17 @@ const Clock = ({ themeCount, showTime }) => {
 
   // Run the clock
   useEffect(() => {
+    animateClockHandsOnTmzChange(
+      secondHand.current,
+      minuteHand.current,
+      hourHand.current,
+      tmzCtx.currentTmz
+    );
+
     const clockInterval = setInterval(() => {
       setClock(secondHand.current, minuteHand.current, hourHand.current, tmzCtx.currentTmz);
     }, 1000);
+
     return () => clearTimeout(clockInterval);
   }, [tmzCtx.currentTmz]);
 

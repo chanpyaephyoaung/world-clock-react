@@ -34,6 +34,17 @@ export const setClock = (secondHand, minuteHand, hourHand, tmz) => {
   rotation(hourHand, hourRatio);
 };
 
+// Animating Clock hands on Timezone change
+export const animateClockHandsOnTmzChange = (secondHand, minuteHand, hourHand, tmz) => {
+  [hourHand, minuteHand, secondHand].forEach(hand => (hand.style.transition = "all .3s"));
+  // Add Transition to the hands for a nice hand change movement
+  setTimeout(
+    () => [hourHand, minuteHand, secondHand].forEach(hand => (hand.style.transition = "all 0s")),
+    300
+  );
+  setClock(secondHand, minuteHand, hourHand, tmz);
+};
+
 //-------------------------------
 
 // Time
