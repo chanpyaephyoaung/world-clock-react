@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import TmzContext from "./tmz-context";
 import { getCurrentLocation, fetchCurrentTmz } from "../utils/location";
 import { fetchTmzs } from "../utils/timezones";
-import Loader from "../components/loader/Loader";
+import Loader from "../components/loader/LoaderPage";
+import ErrorPage from "../components/error/ErrorPage";
 
 let initial = false;
 
@@ -11,6 +12,8 @@ const TmzProvider = props => {
   const [currentTmz, setCurrentTmz] = useState("");
   const [tmzData, setTmzData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("Something went wrong!");
 
   useEffect(() => {
     const initiate = async () => {
@@ -33,7 +36,8 @@ const TmzProvider = props => {
         const fetchedTmzData = await fetchTmzs();
         setTmzData(fetchedTmzData);
       } catch (err) {
-        console.error(`${err.message} 😭😭😭`);
+        setHasError(true);
+        setErrorMsg(err.message);
       }
       setIsLoading(false);
     };
@@ -52,6 +56,8 @@ const TmzProvider = props => {
   };
 
   if (isLoading) return <Loader message="Loading..." />;
+
+  if (hasError && !isLoading) return <ErrorPage message={errorMsg} />;
 
   return <TmzContext.Provider value={tmzContext}>{props.children}</TmzContext.Provider>;
 };

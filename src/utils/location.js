@@ -10,7 +10,11 @@ export const getCurrentLocation = () => {
         },
         error => {
           if (error.code === error.PERMISSION_DENIED) {
-            reject(new Error("Geolocation is disabled in the browser."));
+            reject(
+              new Error(
+                "Could not find your current location. Please allow us to access your location data."
+              )
+            );
           } else {
             reject(new Error("Error getting location: " + error.message));
           }
@@ -41,7 +45,7 @@ export const fetchCurrentTmz = async (lat, long) => {
     if (!response.ok) throw new Error("Could not fetch current timezone!");
 
     const data = await response.json();
-    return data['TimeZoneId'];
+    return data["TimeZoneId"];
   } catch (err) {
     console.error(`${err.message} 😭`);
     throw err;
