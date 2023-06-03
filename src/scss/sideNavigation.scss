@@ -1,4 +1,5 @@
 @import "./abstract.scss";
+@import "./animation.scss";
 
 // Side Navigation
 
@@ -73,11 +74,6 @@
       transform: scaleX(-1);
       color: $color-white;
       cursor: pointer;
-      transition: all 0.2s;
-
-      &--animate {
-        transform: scaleX(-1) rotate(360deg);
-      }
     }
   }
 

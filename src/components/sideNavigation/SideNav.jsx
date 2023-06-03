@@ -46,9 +46,8 @@ const SideNav = ({ showSideNav, onCloseSideNav }) => {
 
             <div
               ref={revertIconRef}
-              className={`side-nav__sub-header__revert-icon ${
-                animateRevertIcon ? "side-nav__sub-header__revert-icon--animate" : ""
-              }`}
+              className={`side-nav__sub-header__revert-icon`}
+              style={{ animation: animateRevertIcon ? "rotateRevertIcon360 .3s forwards" : "" }}
             >
               <ImSpinner11 onClick={revertBackToInitialTmz} />
             </div>

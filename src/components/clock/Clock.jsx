@@ -17,15 +17,16 @@ const Clock = ({ themeCount, showTime }) => {
 
   // Run the clock
   useEffect(() => {
-    animateClockHandsOnTmzChange(
+    const clockParams = [
       secondHand.current,
       minuteHand.current,
       hourHand.current,
-      tmzCtx.currentTmz
-    );
+      tmzCtx.currentTmz,
+    ];
+    animateClockHandsOnTmzChange(...clockParams);
 
     const clockInterval = setInterval(() => {
-      setClock(secondHand.current, minuteHand.current, hourHand.current, tmzCtx.currentTmz);
+      setClock(...clockParams);
     }, 1000);
 
     return () => clearTimeout(clockInterval);

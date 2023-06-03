@@ -75,3 +75,12 @@
     opacity: 0;
   }
 }
+
+@keyframes rotateRevertIcon360 {
+  0% {
+    transform: scaleX(-1) rotate(0deg);
+  }
+  100% {
+    transform: scaleX(-1) rotate(360deg);
+  }
+}
