@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import TmzContext from "./tmz-context";
 import { getCurrentLocation, fetchCurrentTmz } from "../utils/location";
 import { fetchTmzs } from "../utils/timezones";
+import Loader from "../components/loader/Loader";
 
 let initial = false;
 
@@ -50,7 +51,7 @@ const TmzProvider = props => {
     setTmz: handleSetTmz,
   };
 
-  if (isLoading) return <p>Loading Timezones...</p>;
+  if (isLoading) return <Loader message="Loading..." />;
 
   return <TmzContext.Provider value={tmzContext}>{props.children}</TmzContext.Provider>;
 };
