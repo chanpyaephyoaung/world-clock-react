@@ -13,13 +13,18 @@ const SideNav = ({ showSideNav, onCloseSideNav }) => {
   const [animateRevertIcon, setanimateRevertIcon] = useState(false);
 
   const tmzCtx = useContext(TmzContext);
-  const { initialTmz, currentTmz } = tmzCtx;
+  const { initialTmzContentId, initialTmz, currentTmz, setToggleActiveIndex } = tmzCtx;
 
   // Revert timezone back to initial timezone
   const revertBackToInitialTmz = () => {
     // Only revert if the current tmz is not the same as initial tmz
     if (initialTmz === currentTmz) return;
     tmzCtx.setTmz(initialTmz);
+    tmzCtx.setActiveTmzScroll(true);
+
+    // Revert the toggle Active index back to initial tmz content Id
+    setToggleActiveIndex(initialTmzContentId);
+
     // A little rotation animation
     setanimateRevertIcon(true);
     setTimeout(() => setanimateRevertIcon(false), 300);
