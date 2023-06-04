@@ -7,15 +7,15 @@ const SideNavTmzContentTmzs = ({ tmz, isActiveTmz }) => {
   const { scrollToActiveTmz, setActiveTmzScroll } = tmzCtx;
 
   useEffect(() => {
+    // Scroll to active timezone
     const activeTmzEl = document.querySelector(".side-nav__timezone.active");
     if (!isActiveTmz || !scrollToActiveTmz) return;
-    console.log("Scrolled!");
     setActiveTmzScroll(false);
     activeTmzEl.scrollIntoView({
       behavior: "smooth",
       block: "center",
     });
-  }, [scrollToActiveTmz, isActiveTmz]);
+  }, [scrollToActiveTmz, isActiveTmz, setActiveTmzScroll]);
 
   // Replacing '_' with white space
   const tmzText = sliceZoneName(tmz).replaceAll("_", " ");

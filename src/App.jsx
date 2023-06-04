@@ -1,16 +1,19 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useContext } from "react";
 import ClockWrapper from "./components/clock/ClockWrapper";
 import Credit from "./components/credit/Credit";
 import Header from "./components/header/Header";
 import Overlay from "./components/overlay/Overlay";
 import SideNav from "./components/sideNavigation/SideNav";
 import themes from "./data/themes";
-import TmzProvider from "./store/TmzProvider";
+import TmzContext from "./store/tmz-context";
 
 function App() {
   const [themeCount, setThemeCount] = useState(0);
   const [showTime, setShowTime] = useState(false);
   const [showSideNav, setShowSideNav] = useState(false);
+
+  const tmzCtx = useContext(TmzContext);
+  const { setToggleActiveIndex } = tmzCtx;
 
   // For changing the color of the background whenever IconChangeTheme is triggered
   useEffect(() => {
@@ -40,10 +43,12 @@ function App() {
 
   const closeSideNavHandler = useCallback(() => {
     setShowSideNav(false);
-  }, []);
+    // Close all the tabs if the side nav is closed
+    setToggleActiveIndex(0);
+  }, [setToggleActiveIndex]);
 
   return (
-    <TmzProvider>
+    <>
       <SideNav showSideNav={showSideNav} onCloseSideNav={closeSideNavHandler} />
       <Overlay onCloseSideNav={closeSideNavHandler} showOverlay={showSideNav} />
       <Header
@@ -53,7 +58,7 @@ function App() {
       />
       <ClockWrapper themeCount={themeCount} showTime={showTime} />
       <Credit themeCount={themeCount} />
-    </TmzProvider>
+    </>
   );
 }
 
