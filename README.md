@@ -1,11 +1,12 @@
 # Live World Clock
 
 ![Clock components](./img/world-clock-banner.jpg)
-![Demo Gif](./img/demo-gif.gif)
 
-## Introduction
+## About
 
 An aethetic live world clock designed to display accurate time across differeent time zones seamlessly. Built with modern web technologies such as React and SCSS, this project aims to provide a visually appealing and highly functional tool for users to keep track of time in various parts of the world.
+
+![Demo Gif](./img/demo-gif.gif)
 
 ## Setup Instructions
 
